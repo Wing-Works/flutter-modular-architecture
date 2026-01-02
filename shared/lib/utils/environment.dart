@@ -4,9 +4,8 @@ enum Flavor { uat, cug, prod }
 
 @singleton
 class Environment {
-  Flavor _flavor;
-
   Environment() : _flavor = Flavor.uat;
+  Flavor _flavor;
   Flavor get flavor => _flavor;
 
   void setFlavor(Flavor flavor) {

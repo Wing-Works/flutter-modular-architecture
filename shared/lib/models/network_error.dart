@@ -8,5 +8,4 @@ class NetworkError extends BaseError {
     super.message,
     super.metadata,
   }) : super(code: httpCode);
-
 }

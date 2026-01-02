@@ -3,9 +3,8 @@ import 'package:flutter_modular_architecture/src/auth/domain/repository/auth.dar
 import 'package:shared/shared.dart';
 
 class AuthUC extends BaseCheck<AuthUCParams, AuthModel> {
-  final AuthRepository _repo;
-
   AuthUC(this._repo);
+  final AuthRepository _repo;
 
   @override
   ApiResult<AuthModel> execute(AuthUCParams params) {
@@ -21,7 +20,7 @@ class AuthUCParams extends Params {
 
   @override
   Map<String, dynamic> get toJson => {
-    "accountId": accountId,
-    "accountType": accountType,
+    'accountId': accountId,
+    'accountType': accountType,
   };
 }

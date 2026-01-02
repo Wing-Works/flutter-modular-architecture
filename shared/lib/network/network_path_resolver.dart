@@ -3,8 +3,8 @@ import 'package:shared/shared.dart';
 
 @injectable
 class NetworkPathResolver {
-  final Environment env;
   const NetworkPathResolver(this.env);
+  final Environment env;
 
   String getPath({String? uat, String? cug, String? prod}) {
     assert(

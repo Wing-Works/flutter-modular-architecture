@@ -1,5 +1,3 @@
-library;
-
 export 'di/di.module.dart';
 export 'models/base_error.dart';
 export 'network/network_path_resolver.dart';

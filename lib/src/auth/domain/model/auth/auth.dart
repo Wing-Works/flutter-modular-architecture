@@ -4,7 +4,6 @@ part 'auth.mapper.dart';
 
 @MappableClass()
 class AuthModel with AuthModelMappable {
-  final int myValue;
-
   AuthModel(this.myValue);
+  final int myValue;
 }

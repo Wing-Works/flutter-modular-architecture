@@ -7,9 +7,8 @@ import 'package:shared/shared.dart';
 
 @Injectable(as: AuthRepository)
 class AuthRepositoryImpl implements AuthRepository {
-  final AuthRemoteDS remote;
-
   AuthRepositoryImpl(this.remote);
+  final AuthRemoteDS remote;
 
   @override
   ApiResult<AuthModel> login(DataMap body) {

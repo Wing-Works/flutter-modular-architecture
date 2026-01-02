@@ -4,17 +4,17 @@ enum Side {
   left,
 
   /// The right side of an Either value.
-  right
+  right,
 }
 
 /// A union type containing either a left value [L] or a right value [R].
-/// 
+///
 /// The Either type is commonly used for error handling where [L] represents
 /// an error type and [R] represents a success type.
 typedef Either<L, R> = ({L? left, R? right});
 
 /// Creates a left value of type [L] for an [Either].
-/// 
+///
 /// Example:
 /// ```dart
 /// final error = left<String, int>('Error occurred');
@@ -22,7 +22,7 @@ typedef Either<L, R> = ({L? left, R? right});
 Either<L, R> left<L, R>(L value) => (left: value, right: null);
 
 /// Creates a right value of type [R] for an [Either].
-/// 
+///
 /// Example:
 /// ```dart
 /// final success = right<String, int>(42);
@@ -76,7 +76,8 @@ extension EitherExtension<L, R> on Either<L, R> {
     if (rightVal != null) return onRight(rightVal);
 
     throw StateError(
-        'Either is in an invalid state - both left and right are null');
+      'Either is in an invalid state - both left and right are null',
+    );
   }
 
   /// Applies [onLeft] if this contains a left value, [onRight] if this contains a right value.
@@ -96,7 +97,8 @@ extension EitherExtension<L, R> on Either<L, R> {
     }
 
     throw StateError(
-        'Either is in an invalid state - both left and right are null');
+      'Either is in an invalid state - both left and right are null',
+    );
   }
 
   /// Maps the right value using [transform] if present, otherwise returns the left value unchanged.
@@ -110,7 +112,8 @@ extension EitherExtension<L, R> on Either<L, R> {
     if (leftVal != null) return left<L, T>(leftVal);
 
     throw StateError(
-        'Either is in an invalid state - both left and right are null');
+      'Either is in an invalid state - both left and right are null',
+    );
   }
 
   /// Maps the left value using [transform] if present, otherwise returns the right value unchanged.
@@ -124,7 +127,8 @@ extension EitherExtension<L, R> on Either<L, R> {
     if (rightVal != null) return right<T, R>(rightVal);
 
     throw StateError(
-        'Either is in an invalid state - both left and right are null');
+      'Either is in an invalid state - both left and right are null',
+    );
   }
 
   /// Flat maps the right value using [transform] if present, otherwise returns the left value unchanged.
@@ -138,7 +142,8 @@ extension EitherExtension<L, R> on Either<L, R> {
     if (leftVal != null) return left<L, T>(leftVal);
 
     throw StateError(
-        'Either is in an invalid state - both left and right are null');
+      'Either is in an invalid state - both left and right are null',
+    );
   }
 
   /// Returns the right value if present, otherwise returns [defaultValue].
@@ -164,7 +169,8 @@ extension EitherExtension<L, R> on Either<L, R> {
     if (rightVal != null) return left<R, L>(rightVal);
 
     throw StateError(
-        'Either is in an invalid state - both left and right are null');
+      'Either is in an invalid state - both left and right are null',
+    );
   }
 
   /// Converts this Either to a List containing either the left or right value.

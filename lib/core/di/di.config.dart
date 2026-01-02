@@ -20,6 +20,14 @@ import 'package:flutter_modular_architecture/src/auth/domain/endpoints/auth_endp
     as _i310;
 import 'package:flutter_modular_architecture/src/auth/domain/repository/auth.dart'
     as _i696;
+import 'package:flutter_modular_architecture/src/auth/presentation/bloc/auth_bloc.dart'
+    as _i823;
+import 'package:flutter_modular_architecture/src/home/domain/get_product_list/get_product_list_usecase.dart'
+    as _i286;
+import 'package:flutter_modular_architecture/src/home/domain/product_repository/product_repository.dart'
+    as _i436;
+import 'package:flutter_modular_architecture/src/home/presentation/bloc/home_bloc.dart'
+    as _i371;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 import 'package:network/network.dart' as _i372;
@@ -35,6 +43,7 @@ extension GetItInjectableX on _i174.GetIt {
     await _i252.DatabasePackageModule().init(gh);
     await _i372.NetworkPackageModule().init(gh);
     await _i811.SharedPackageModule().init(gh);
+    gh.factory<_i823.AuthBloc>(() => _i823.AuthBloc());
     gh.factory<_i310.AuthEndpoints>(
       () => _i310.AuthEndpoints(gh<_i811.NetworkPathResolver>()),
     );
@@ -44,8 +53,14 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i372.NetworkClient>(),
       ),
     );
+    gh.factory<_i286.GetProductListUseCase>(
+      () => _i286.GetProductListUseCase(gh<_i436.ProductRepository>()),
+    );
     gh.factory<_i696.AuthRepository>(
       () => _i917.AuthRepositoryImpl(gh<_i779.AuthRemoteDS>()),
+    );
+    gh.factory<_i371.HomeBloc>(
+      () => _i371.HomeBloc(gh<_i286.GetProductListUseCase>()),
     );
     return this;
   }

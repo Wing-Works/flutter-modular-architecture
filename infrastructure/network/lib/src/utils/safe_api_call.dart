@@ -18,10 +18,10 @@ NetworkError _mapExceptionEntity(ExceptionEntity error) {
 }
 
 Future<Either<NetworkError, T>> safeApiCall<T>(
-  Future<ResponseEntity> apiCall,
+  Future<ResponseEntity> Function() apiCall,
 ) async {
   try {
-    final response = await apiCall;
+    final response = await apiCall();
 
     if (!response.successfulResponse) {
       final exception = response.error;

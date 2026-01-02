@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
+import 'package:network/src/entity/response/product_entity/product_entity.dart';
 import 'package:network/src/entity/response/response.dart';
 
 @lazySingleton
@@ -24,6 +25,10 @@ class NetworkClient {
     if (response.data is Map<String, dynamic>) {
       return ResponseEntity.fromJson(response.data);
     }
+    throw const FormatException('Invalid server response');
+  }
+
+  ProductEntity getProductList(Map<String, dynamic> queries) {
     throw const FormatException('Invalid server response');
   }
 }

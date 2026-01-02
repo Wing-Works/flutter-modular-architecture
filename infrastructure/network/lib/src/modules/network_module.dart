@@ -1,8 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
-import 'package:network/src/interceptors/header_interceptor.dart';
-import 'package:network/src/providers/header/header_provider.dart';
+import 'package:network/src/utils/api_interceptor.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 @module
@@ -12,24 +11,17 @@ abstract class NetworkModule {
       BaseOptions(baseUrl: url, receiveTimeout: Duration(seconds: 50));
 
   @singleton
-  HeaderInterceptor provideHeaderInterceptor(HeaderProvider headerProvider) =>
-      HeaderInterceptor(headerProvider);
-
-  @singleton
   PrettyDioLogger providerPrettyLogger() => PrettyDioLogger(
     request: true,
     requestBody: true,
     requestHeader: true,
     responseBody: true,
     responseHeader: true,
-    logPrint: (log) {
-      return debugPrint(log as String);
-    },
   );
 
   @singleton
   List<Interceptor> provideInterceptors(
-    HeaderInterceptor headerInterceptor,
+    ApiInterceptor headerInterceptor,
     PrettyDioLogger logger,
   ) {
     final interceptors = <Interceptor>[headerInterceptor];

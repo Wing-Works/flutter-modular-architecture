@@ -6,10 +6,9 @@ import 'package:shared/shared.dart';
 
 @Injectable(as: AuthRemoteDS)
 class AuthRemoteDSImpl implements AuthRemoteDS {
+  AuthRemoteDSImpl(this.endpoints, this.client);
   final AuthEndpoints endpoints;
   final NetworkClient client;
-
-  AuthRemoteDSImpl(this.endpoints, this.client);
 
   @override
   BaseFutureResponse login(DataMap body) {
