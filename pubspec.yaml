@@ -1,0 +1,49 @@
+name: flutter_modular_architecture
+description: "Flutter Modular Architecture"
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.10.4
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.8
+  dart_mappable: ^4.6.1
+  equatable: ^2.0.7
+  flutter_bloc: ^9.1.1
+  flutter_localizations:
+    sdk: flutter
+  get_it: ^9.2.0
+  google_fonts: ^6.3.3
+  injectable: ^2.7.1+2
+  intl: ^0.20.2
+
+  database:
+    path: infrastructure/database
+
+  network:
+    path: infrastructure/network
+
+  shared:
+    path: shared
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  build_runner: ^2.10.4
+  flutter_lints: ^6.0.0
+  injectable_generator: ^2.11.1
+  dart_mappable_builder: ^4.6.3
+
+flutter:
+  generate: true
+  uses-material-design: true
+
+flutter_intl:
+  enabled: true
+  arb_dir: lib/core/l10n
+  output_dir: lib/core/l10n/generated
