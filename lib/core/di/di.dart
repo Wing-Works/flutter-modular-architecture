@@ -6,7 +6,7 @@ import 'package:shared/shared.dart';
 
 import 'di.config.dart';
 
-GetIt getIt = GetIt.instance;
+final getIt = GetIt.instance;
 
 @InjectableInit(
   externalPackageModulesBefore: [
@@ -15,4 +15,5 @@ GetIt getIt = GetIt.instance;
     ExternalModule(SharedPackageModule),
   ],
 )
-Future<GetIt> configureDependencies() async => await getIt.init();
+Future<GetIt> configureDependencies(String flavor) async =>
+    await getIt.init(environment: flavor);
