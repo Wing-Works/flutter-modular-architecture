@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular_architecture/core/base/base_widget/stateless/base_stateless_widget.dart';
-import 'package:flutter_modular_architecture/src/home/domain/product_list/product_model.dart';
 import 'package:flutter_modular_architecture/src/home/presentation/bloc/home_bloc.dart';
 import 'package:flutter_modular_architecture/src/home/presentation/widgets/item_card_widget.dart';
+import 'package:shared/shared.dart';
 
 class HomeScreen extends BaseStatelessWidget<HomeBloc> {
   const HomeScreen(super.bloc, {super.key});

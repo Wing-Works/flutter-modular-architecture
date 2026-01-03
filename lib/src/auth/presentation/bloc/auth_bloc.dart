@@ -6,7 +6,7 @@ import 'package:injectable/injectable.dart';
 part 'auth_bloc_state.dart';
 part 'auth_event.dart';
 
-@Injectable()
+@injectable
 class AuthBloc extends BlocBase<AuthEvent, AuthBlocState> {
   AuthBloc() : super(const AuthBlocState());
 

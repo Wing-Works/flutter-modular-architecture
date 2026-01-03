@@ -3,8 +3,8 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_modular_architecture/core/base/bloc/bloc_base/bloc_base.dart';
 import 'package:flutter_modular_architecture/core/base/bloc/state/base_state.dart';
 import 'package:flutter_modular_architecture/src/home/domain/get_product_list/get_product_list_usecase.dart';
-import 'package:flutter_modular_architecture/src/home/domain/product_list/product_model.dart';
 import 'package:injectable/injectable.dart';
+import 'package:shared/shared.dart';
 
 part 'home_event.dart';
 part 'home_state.dart';

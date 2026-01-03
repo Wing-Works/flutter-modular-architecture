@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_modular_architecture/src/home/domain/product_list/product_model.dart';
+import 'package:shared/shared.dart';
 
 class ItemCard extends StatelessWidget {
   const ItemCard(this.item, {super.key});

@@ -14,4 +14,6 @@ GetIt getIt = GetIt.instance;
     ExternalModule(SharedPackageModule),
   ],
 )
-Future<GetIt> configureDependencies() async => getIt.init();
+Future<GetIt> configureDependencies() async {
+  return await getIt.init();
+}

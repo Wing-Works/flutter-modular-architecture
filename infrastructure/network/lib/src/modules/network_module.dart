@@ -6,11 +6,12 @@ import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 @module
 abstract class NetworkModule {
-  @singleton
-  BaseOptions provideBaseOptions(@Named('BaseUrl') String url) =>
-      BaseOptions(baseUrl: url, receiveTimeout: Duration(seconds: 50));
+  @lazySingleton
+  BaseOptions provideBaseOptions(@Named('BaseUrl') String url) {
+    return BaseOptions(baseUrl: url, receiveTimeout: Duration(seconds: 50));
+  }
 
-  @singleton
+  @lazySingleton
   PrettyDioLogger providerPrettyLogger() => PrettyDioLogger(
     request: true,
     requestBody: true,
@@ -19,7 +20,7 @@ abstract class NetworkModule {
     responseHeader: true,
   );
 
-  @singleton
+  @lazySingleton
   List<Interceptor> provideInterceptors(
     ApiInterceptor headerInterceptor,
     PrettyDioLogger logger,

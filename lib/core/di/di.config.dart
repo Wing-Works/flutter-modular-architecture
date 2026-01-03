@@ -22,6 +22,12 @@ import 'package:flutter_modular_architecture/src/auth/domain/repository/auth.dar
     as _i696;
 import 'package:flutter_modular_architecture/src/auth/presentation/bloc/auth_bloc.dart'
     as _i823;
+import 'package:flutter_modular_architecture/src/home/data/repository/product_repository_impl.dart'
+    as _i59;
+import 'package:flutter_modular_architecture/src/home/data/source/product_data_source/product_ds.dart'
+    as _i1021;
+import 'package:flutter_modular_architecture/src/home/data/source/product_data_source/product_ds_impl.dart'
+    as _i561;
 import 'package:flutter_modular_architecture/src/home/domain/get_product_list/get_product_list_usecase.dart'
     as _i286;
 import 'package:flutter_modular_architecture/src/home/domain/product_repository/product_repository.dart'
@@ -47,10 +53,18 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i310.AuthEndpoints>(
       () => _i310.AuthEndpoints(gh<_i811.NetworkPathResolver>()),
     );
+    gh.factory<_i1021.ProductDataSource>(
+      () => _i561.ArticleDataSourceImpl(gh<_i372.NetworkClient>()),
+    );
     gh.factory<_i779.AuthRemoteDS>(
       () => _i165.AuthRemoteDSImpl(
         gh<_i310.AuthEndpoints>(),
         gh<_i372.NetworkClient>(),
+      ),
+    );
+    gh.factory<_i436.ProductRepository>(
+      () => _i59.ProductRepositoryImpl(
+        articleDataSource: gh<_i1021.ProductDataSource>(),
       ),
     );
     gh.factory<_i286.GetProductListUseCase>(

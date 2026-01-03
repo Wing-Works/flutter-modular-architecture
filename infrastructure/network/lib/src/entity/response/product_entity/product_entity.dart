@@ -1,6 +1,6 @@
-import 'package:data/src/util/base_layer_transformer.dart';
-import 'package:domain/domain.dart';
 import 'package:json_annotation/json_annotation.dart';
+import 'package:network/src/utils/base_layer_transformer.dart';
+import 'package:shared/shared.dart';
 
 part 'product_entity.g.dart';
 

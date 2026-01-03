@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular_architecture/core/base/base_widget/stateless/base_stateless_widget.dart';
 import 'package:flutter_modular_architecture/src/auth/presentation/bloc/auth_bloc.dart';
+import 'package:flutter_modular_architecture/src/home/presentation/home_screen.dart';
 
 class AuthScreen extends BaseStatelessWidget<AuthBloc> {
   const AuthScreen(super.bloc, {super.key});
@@ -16,7 +17,7 @@ class AuthScreen extends BaseStatelessWidget<AuthBloc> {
   Widget buildView(BuildContext context, AuthBloc bloc) {
     return Center(
       child: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -49,7 +50,12 @@ class AuthScreen extends BaseStatelessWidget<AuthBloc> {
             ),
             const SizedBox(height: 24),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushNamed(
+                  context,
+                  HomeScreen.routeName,
+                );
+              },
               style: ElevatedButton.styleFrom(
                 padding: const EdgeInsets.symmetric(vertical: 16),
               ),

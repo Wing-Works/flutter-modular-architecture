@@ -24,9 +24,9 @@ class NetworkPackageModule extends _i526.MicroPackageModule {
   _i687.FutureOr<void> init(_i526.GetItHelper gh) {
     final networkModule = _$NetworkModule();
     final appModule = _$AppModule();
-    gh.singleton<_i528.PrettyDioLogger>(
-        () => networkModule.providerPrettyLogger());
     gh.singleton<_i478.ApiInterceptor>(() => _i478.ApiInterceptor());
+    gh.lazySingleton<_i528.PrettyDioLogger>(
+        () => networkModule.providerPrettyLogger());
     gh.factory<String>(
       () => appModule.baseUrlDev,
       instanceName: 'BaseUrl',
@@ -57,9 +57,9 @@ class NetworkPackageModule extends _i526.MicroPackageModule {
       instanceName: 'x-apikey',
       registerFor: {_prod},
     );
-    gh.singleton<_i361.BaseOptions>(() =>
+    gh.lazySingleton<_i361.BaseOptions>(() =>
         networkModule.provideBaseOptions(gh<String>(instanceName: 'BaseUrl')));
-    gh.singleton<List<_i361.Interceptor>>(
+    gh.lazySingleton<List<_i361.Interceptor>>(
         () => networkModule.provideInterceptors(
               gh<_i478.ApiInterceptor>(),
               gh<_i528.PrettyDioLogger>(),

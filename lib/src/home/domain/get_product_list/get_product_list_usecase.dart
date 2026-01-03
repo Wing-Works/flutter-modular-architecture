@@ -1,4 +1,3 @@
-import 'package:flutter_modular_architecture/src/home/domain/product_list/product_model.dart';
 import 'package:flutter_modular_architecture/src/home/domain/product_repository/product_repository.dart';
 import 'package:injectable/injectable.dart';
 import 'package:shared/models/network_error.dart';
