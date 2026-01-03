@@ -12,11 +12,12 @@ import 'package:shared/shared.dart' as _i811;
 import 'package:shared/utils/environment.dart' as _i227;
 
 class SharedPackageModule extends _i526.MicroPackageModule {
-// initializes the registration of main-scope dependencies inside of GetIt
+  // initializes the registration of main-scope dependencies inside of GetIt
   @override
   _i687.FutureOr<void> init(_i526.GetItHelper gh) {
     gh.singleton<_i227.Environment>(() => _i227.Environment());
     gh.factory<_i447.NetworkPathResolver>(
-        () => _i447.NetworkPathResolver(gh<_i811.Environment>()));
+      () => _i447.NetworkPathResolver(gh<_i811.Environment>()),
+    );
   }
 }

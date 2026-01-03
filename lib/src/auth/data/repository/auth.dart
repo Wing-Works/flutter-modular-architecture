@@ -13,6 +13,6 @@ class AuthRepositoryImpl implements AuthRepository {
   ApiResult<AuthModel> login(DataMap body) {
     // TODO: implement login
     throw UnimplementedError();
-   // return safeApiCall<AuthModel>(remote.login(body));
+    // return safeApiCall<AuthModel>(remote.login(body));
   }
 }

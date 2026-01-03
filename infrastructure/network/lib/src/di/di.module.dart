@@ -19,14 +19,15 @@ const String _test = 'test';
 const String _prod = 'prod';
 
 class NetworkPackageModule extends _i526.MicroPackageModule {
-// initializes the registration of main-scope dependencies inside of GetIt
+  // initializes the registration of main-scope dependencies inside of GetIt
   @override
   _i687.FutureOr<void> init(_i526.GetItHelper gh) {
     final networkModule = _$NetworkModule();
     final appModule = _$AppModule();
     gh.singleton<_i478.ApiInterceptor>(() => _i478.ApiInterceptor());
     gh.lazySingleton<_i528.PrettyDioLogger>(
-        () => networkModule.providerPrettyLogger());
+      () => networkModule.providerPrettyLogger(),
+    );
     gh.factory<String>(
       () => appModule.baseUrlDev,
       instanceName: 'BaseUrl',
@@ -57,19 +58,25 @@ class NetworkPackageModule extends _i526.MicroPackageModule {
       instanceName: 'x-apikey',
       registerFor: {_prod},
     );
-    gh.lazySingleton<_i361.BaseOptions>(() =>
-        networkModule.provideBaseOptions(gh<String>(instanceName: 'BaseUrl')));
+    gh.lazySingleton<_i361.BaseOptions>(
+      () =>
+          networkModule.provideBaseOptions(gh<String>(instanceName: 'BaseUrl')),
+    );
     gh.lazySingleton<List<_i361.Interceptor>>(
-        () => networkModule.provideInterceptors(
-              gh<_i478.ApiInterceptor>(),
-              gh<_i528.PrettyDioLogger>(),
-            ));
-    gh.lazySingleton<_i361.Dio>(() => networkModule.providerDio(
-          gh<_i361.BaseOptions>(),
-          gh<List<_i361.Interceptor>>(),
-        ));
+      () => networkModule.provideInterceptors(
+        gh<_i478.ApiInterceptor>(),
+        gh<_i528.PrettyDioLogger>(),
+      ),
+    );
+    gh.lazySingleton<_i361.Dio>(
+      () => networkModule.providerDio(
+        gh<_i361.BaseOptions>(),
+        gh<List<_i361.Interceptor>>(),
+      ),
+    );
     gh.lazySingleton<_i103.NetworkClient>(
-        () => _i103.NetworkClient(gh<_i361.Dio>()));
+      () => _i103.NetworkClient(gh<_i361.Dio>()),
+    );
   }
 }
 

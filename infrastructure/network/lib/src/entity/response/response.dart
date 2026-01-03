@@ -5,7 +5,8 @@ import 'package:network/src/utils/base_layer_transformer.dart';
 part 'response.mapper.dart';
 
 @MappableClass()
-class ResponseEntity extends BaseLayerDataTransformer<dynamic> with ResponseEntityMappable {
+class ResponseEntity extends BaseLayerDataTransformer<dynamic>
+    with ResponseEntityMappable {
   ResponseEntity({
     this.response = '',
     this.data,
