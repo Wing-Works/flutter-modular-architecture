@@ -3,17 +3,8 @@ import 'dart:io';
 
 import 'package:dart_mappable/dart_mappable.dart';
 import 'package:dio/dio.dart';
-import 'package:network/src/entity/exception/exception.dart';
 import 'package:shared/models/network_error.dart';
 import 'package:shared/utils/either.dart';
-
-NetworkError _mapExceptionEntity(ExceptionEntity error) {
-  return NetworkError(
-    httpCode: error.code,
-    message: error.message.isNotEmpty ? error.message : 'Something went wrong',
-    cause: error,
-  );
-}
 
 Future<Either<NetworkError, T>> safeApiCall<T>(Future<Map> apiCall) async {
   try {

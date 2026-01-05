@@ -11,7 +11,7 @@ part 'auth_event.dart';
 
 @injectable
 class AuthBloc extends BlocBase<AuthEvent, AuthBlocState> {
-  AuthBloc(this._authUC) : super(AuthBlocState()) {}
+  AuthBloc(this._authUC) : super(AuthBlocState());
 
   final AuthUC _authUC;
 
@@ -27,8 +27,8 @@ class AuthBloc extends BlocBase<AuthEvent, AuthBlocState> {
     });
   }
 
-  final usernameController = TextEditingController();
-  final passwordController = TextEditingController();
+  final usernameController = TextEditingController(text: 'emilys');
+  final passwordController = TextEditingController(text: 'emilyspass');
   final formKey = GlobalKey<FormState>();
 
   Future<void> _handleLogin(
@@ -47,8 +47,6 @@ class AuthBloc extends BlocBase<AuthEvent, AuthBlocState> {
         emit(state.copyWith(isLoading: false, response: data));
       },
       onFailure: (err) {
-        print(err);
-        print(err.stackTrace);
         emit(state.copyWith(isLoading: false));
       },
     );

@@ -61,9 +61,9 @@ class AuthScreen extends BaseStatelessWidget<AuthBloc> {
                 ),
                 const SizedBox(height: 20),
                 // show loading or response
-                Builder(
-                  builder: (context) {
-                    final state = bloc.state;
+                BlocBuilder<AuthBloc, AuthBlocState>(
+                  bloc: bloc,
+                  builder: (context, state) {
                     if (state.isLoading) {
                       return const CircularProgressIndicator();
                     }
