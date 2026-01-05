@@ -1,11 +1,9 @@
 import 'dart:async';
-import 'dart:convert';
 import 'dart:io';
 
 import 'package:dart_mappable/dart_mappable.dart';
 import 'package:dio/dio.dart';
 import 'package:network/src/entity/exception/exception.dart';
-import 'package:network/src/entity/response/response.dart';
 import 'package:shared/models/network_error.dart';
 import 'package:shared/utils/either.dart';
 
@@ -17,28 +15,11 @@ NetworkError _mapExceptionEntity(ExceptionEntity error) {
   );
 }
 
-Future<Either<NetworkError, T>> safeApiCall<T>(
-  Future<ResponseEntity> apiCall,
-) async {
+Future<Either<NetworkError, T>> safeApiCall<T>(Future<Map> apiCall) async {
   try {
     final response = await apiCall;
 
-    if (!response.successfulResponse) {
-      final exception = response.error;
-      if (exception != null) {
-        return left(_mapExceptionEntity(exception));
-      }
-
-      return left(
-        NetworkError(
-          cause: Exception('Unknown server error'),
-          message: 'Unknown server error',
-        ),
-      );
-    }
-
-    final data = jsonDecode(response.data!);
-    final result = MapperContainer.globals.fromValue<T>(data);
+    final result = MapperContainer.globals.fromValue<T>(response);
     return right(result);
   } on DioException catch (e) {
     return left(_mapDioExceptionToNetworkError(e));

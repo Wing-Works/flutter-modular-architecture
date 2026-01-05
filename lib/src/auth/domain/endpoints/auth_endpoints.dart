@@ -6,5 +6,5 @@ class AuthEndpoints {
   final NetworkPathResolver networkPathResolver;
   const AuthEndpoints(this.networkPathResolver);
 
-  String get login => networkPathResolver.getPath(uat: '/api/v1/login');
+  String get login => networkPathResolver.getPath(uat: '/auth/login');
 }

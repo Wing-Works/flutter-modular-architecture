@@ -5,17 +5,17 @@ abstract class AppModule {
   // --> Existing baseUrlDev
   @dev
   @Named('BaseUrl')
-  String get baseUrlDev => '';
+  String get baseUrlDev => 'https://dummyjson.com';
 
   // --> baseUrl for CUG
   @prod
   @Named('BaseUrl')
-  String get baseUrlProd => '';
+  String get baseUrlProd => 'https://dummyjson.com';
 
   // --> baseUrl for Prod
   @test
   @Named('BaseUrl')
-  String get baseUrlTest => '';
+  String get baseUrlTest => 'https://dummyjson.com';
 
   @dev
   @Named('x-apikey')

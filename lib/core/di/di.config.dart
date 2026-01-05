@@ -20,6 +20,10 @@ import 'package:flutter_modular_architecture/src/auth/domain/endpoints/auth_endp
     as _i310;
 import 'package:flutter_modular_architecture/src/auth/domain/repository/auth.dart'
     as _i696;
+import 'package:flutter_modular_architecture/src/auth/domain/usecase/auth.dart'
+    as _i392;
+import 'package:flutter_modular_architecture/src/auth/presentation/bloc/auth_bloc.dart'
+    as _i823;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 import 'package:network/network.dart' as _i372;
@@ -47,6 +51,8 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i696.AuthRepository>(
       () => _i917.AuthRepositoryImpl(gh<_i779.AuthRemoteDS>()),
     );
+    gh.factory<_i392.AuthUC>(() => _i392.AuthUC(gh<_i696.AuthRepository>()));
+    gh.factory<_i823.AuthBloc>(() => _i823.AuthBloc(gh<_i392.AuthUC>()));
     return this;
   }
 }

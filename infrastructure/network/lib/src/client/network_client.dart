@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
-import 'package:network/src/entity/response/response.dart';
 
 @lazySingleton
 class NetworkClient {
@@ -8,7 +7,7 @@ class NetworkClient {
 
   NetworkClient(this.dio);
 
-  Future<ResponseEntity> get(
+  Future<Map> get(
     String path, {
     Map<String, dynamic>? query,
     dynamic body,
@@ -18,11 +17,11 @@ class NetworkClient {
       path,
       data: body,
       queryParameters: query,
-      options: Options(method: 'GET', headers: headers),
+      options: Options(method: 'POST', headers: headers),
     );
 
     if (response.data is Map<String, dynamic>) {
-      return ResponseEntity.fromJson(response.data);
+      return response.data;
     }
     throw const FormatException('Invalid server response');
   }
