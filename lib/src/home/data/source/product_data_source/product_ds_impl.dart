@@ -9,7 +9,8 @@ class ArticleDataSourceImpl implements ProductDataSource {
   final NetworkClient _retrofitService;
 
   @override
-  Future<ProductEntity> getProductList(Map<String, dynamic> queries) {
-    return _retrofitService.getProductList(queries);
+  Future<dynamic> getProductList(Map<String, dynamic> queries) {
+    // TODO: implement getArticles
+    throw UnimplementedError();
   }
 }

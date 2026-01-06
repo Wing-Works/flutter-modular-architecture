@@ -1,12 +1,11 @@
 import 'package:database/database.dart';
+import 'package:flutter_modular_architecture/core/di/di.config.dart';
 import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
 import 'package:network/network.dart';
 import 'package:shared/shared.dart';
 
-import 'di.config.dart';
-
-final getIt = GetIt.instance;
+final GetIt getIt = GetIt.instance;
 
 @InjectableInit(
   externalPackageModulesBefore: [
@@ -16,4 +15,4 @@ final getIt = GetIt.instance;
   ],
 )
 Future<GetIt> configureDependencies(String flavor) async =>
-    await getIt.init(environment: flavor);
+    getIt.init(environment: flavor);

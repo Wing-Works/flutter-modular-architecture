@@ -1,88 +1,67 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_modular_architecture/core/base/base_widgets/stateless/base_stateless_widget.dart';
+import 'package:flutter_modular_architecture/core/base/base_widget/stateless/base_stateless_widget.dart';
 import 'package:flutter_modular_architecture/src/auth/presentation/bloc/auth_bloc.dart';
+import 'package:flutter_modular_architecture/src/home/presentation/home_screen.dart';
 
 class AuthScreen extends BaseStatelessWidget<AuthBloc> {
-  const AuthScreen({super.key});
+  const AuthScreen(super.bloc, {super.key});
+
+  static const String routeName = '/';
 
   @override
-  Widget buildView(BuildContext context) {
-    final bloc = context.read<AuthBloc>();
+  PreferredSizeWidget? buildAppbar(BuildContext context, AuthBloc bloc) {
+    return AppBar(title: const Text('Login'));
+  }
+
+  @override
+  Widget buildView(BuildContext context, AuthBloc bloc) {
     return Center(
-      child: Container(
-        width: 500,
+      child: Padding(
         padding: const EdgeInsets.all(16),
-        child: Card(
-          child: Padding(
-            padding: const EdgeInsets.all(16),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Form(
-                  key: bloc.formKey,
-                  child: Column(
-                    children: [
-                      TextFormField(
-                        controller: bloc.usernameController,
-                        decoration: const InputDecoration(
-                          labelText: 'Username',
-                        ),
-                        validator: (v) =>
-                            (v == null || v.isEmpty) ? 'Enter username' : null,
-                      ),
-                      const SizedBox(height: 12),
-                      TextFormField(
-                        controller: bloc.passwordController,
-                        decoration: const InputDecoration(
-                          labelText: 'Password',
-                        ),
-                        obscureText: true,
-                        validator: (v) =>
-                            (v == null || v.isEmpty) ? 'Enter password' : null,
-                      ),
-                      const SizedBox(height: 16),
-                      ElevatedButton(
-                        onPressed: () {
-                          print('-------------------------------------------');
-                          if (bloc.formKey.currentState?.validate() ?? false) {
-                            bloc.add(
-                              LoginSubmitted(
-                                username: bloc.usernameController.text.trim(),
-                                password: bloc.passwordController.text,
-                              ),
-                            );
-                          }
-                        },
-                        child: const Text('Login'),
-                      ),
-                    ],
-                  ),
-                ),
-                const SizedBox(height: 20),
-                // show loading or response
-                BlocBuilder<AuthBloc, AuthBlocState>(
-                  bloc: bloc,
-                  builder: (context, state) {
-                    if (state.isLoading) {
-                      return const CircularProgressIndicator();
-                    }
-                    return Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text(
-                          'Response:',
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                        const SizedBox(height: 8),
-                        Text(state.response?.toString() ?? 'No response yet'),
-                      ],
-                    );
-                  },
-                ),
-              ],
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            const Text(
+              'Welcome Back',
+              style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+              ),
+              textAlign: TextAlign.center,
             ),
-          ),
+            const SizedBox(height: 32),
+            const TextField(
+              decoration: InputDecoration(
+                labelText: 'Email',
+                border: OutlineInputBorder(),
+                prefixIcon: Icon(Icons.email),
+              ),
+              keyboardType: TextInputType.emailAddress,
+            ),
+            const SizedBox(height: 16),
+            const TextField(
+              decoration: InputDecoration(
+                labelText: 'Password',
+                border: OutlineInputBorder(),
+                prefixIcon: Icon(Icons.lock),
+              ),
+              obscureText: true,
+            ),
+            const SizedBox(height: 24),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(
+                  context,
+                  HomeScreen.routeName,
+                );
+              },
+              style: ElevatedButton.styleFrom(
+                padding: const EdgeInsets.symmetric(vertical: 16),
+              ),
+              child: const Text('Login'),
+            ),
+          ],
         ),
       ),
     );

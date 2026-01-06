@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart' hide BlocBase;
-import 'package:flutter_modular_architecture/core/base/bloc/base_event.dart';
-import 'package:flutter_modular_architecture/core/base/bloc/base_state.dart';
-import 'package:flutter_modular_architecture/core/base/bloc/bloc_base.dart';
+import 'package:flutter_modular_architecture/core/base/bloc/bloc_base/bloc_base.dart';
+import 'package:flutter_modular_architecture/core/base/bloc/state/base_state.dart';
 import 'package:flutter_modular_architecture/src/auth/domain/usecase/auth.dart';
 import 'package:injectable/injectable.dart';
 

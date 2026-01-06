@@ -4,15 +4,6 @@ part 'auth.mapper.dart';
 
 @MappableClass()
 class AuthModel with AuthModelMappable {
-  final int id;
-  final String username;
-  final String email;
-  final String firstName;
-  final String lastName;
-  final String gender;
-  final String image;
-  final String accessToken;
-  final String refreshToken;
 
   AuthModel({
     required this.id,
@@ -25,4 +16,13 @@ class AuthModel with AuthModelMappable {
     required this.accessToken,
     required this.refreshToken,
   });
+  final int id;
+  final String username;
+  final String email;
+  final String firstName;
+  final String lastName;
+  final String gender;
+  final String image;
+  final String accessToken;
+  final String refreshToken;
 }

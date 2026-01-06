@@ -5,9 +5,9 @@ import 'package:shared/shared.dart';
 
 @injectable
 class AuthUC extends BaseCheck<AuthUCParams, AuthModel> {
-  final AuthRepository _repo;
 
   AuthUC(this._repo);
+  final AuthRepository _repo;
 
   @override
   ApiResult<AuthModel> execute(AuthUCParams params) {
@@ -23,7 +23,7 @@ class AuthUCParams extends Params {
 
   @override
   Map<String, dynamic> get toJson => {
-    "username": username,
-    "password": password,
+    'username': username,
+    'password': password,
   };
 }

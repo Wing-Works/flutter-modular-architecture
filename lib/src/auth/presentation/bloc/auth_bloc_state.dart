@@ -1,10 +1,10 @@
 part of 'auth_bloc.dart';
 
 class AuthBlocState extends BaseState {
-  final bool isLoading;
-  final dynamic response;
 
   AuthBlocState({this.isLoading = false, this.response});
+  final bool isLoading;
+  final dynamic response;
 
   AuthBlocState copyWith({bool? isLoading, dynamic response}) {
     return AuthBlocState(

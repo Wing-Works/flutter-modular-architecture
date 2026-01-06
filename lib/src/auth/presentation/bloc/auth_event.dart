@@ -4,14 +4,14 @@ part of 'auth_bloc.dart';
 abstract class AuthEvent extends BaseEvent {}
 
 class LoginSubmitted extends AuthEvent {
-  final String username;
-  final String password;
 
   LoginSubmitted({required this.username, required this.password});
+  final String username;
+  final String password;
 }
 
 class AuthResponseReceived extends AuthEvent {
-  final dynamic response;
 
   AuthResponseReceived(this.response);
+  final dynamic response;
 }
