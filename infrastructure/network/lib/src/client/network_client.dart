@@ -1,8 +1,5 @@
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
-import 'package:network/src/entity/response/product_entity/product_entity.dart';
-import 'package:network/src/entity/response/response.dart';
-import 'package:network/src/utils/network_constant.dart';
 
 @lazySingleton
 class NetworkClient {
@@ -10,7 +7,7 @@ class NetworkClient {
 
   NetworkClient(this.dio);
 
-  Future<ResponseEntity> get(
+  Future<Map> get(
     String path, {
     Map<String, dynamic>? query,
     dynamic body,
@@ -20,29 +17,12 @@ class NetworkClient {
       path,
       data: body,
       queryParameters: query,
-      options: Options(method: 'GET', headers: headers),
+      options: Options(method: 'POST', headers: headers),
     );
 
     if (response.data is Map<String, dynamic>) {
-      return ResponseEntity.fromJson(response.data);
+      return response.data;
     }
     throw const FormatException('Invalid server response');
-  }
-
-  Future<ProductEntity> getProductList(Map<String, dynamic> query) async {
-    try {
-      final response = await dio.request(
-        NetworkConstant.products,
-        queryParameters: query,
-        options: Options(method: 'GET'),
-      );
-
-      if (response.data is Map<String, dynamic>) {
-        return ProductEntity.fromJson(response.data);
-      }
-      throw const FormatException('Invalid server response');
-    } on Object {
-      rethrow;
-    }
   }
 }

@@ -1,26 +1,17 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:dart_mappable/dart_mappable.dart';
 import 'package:dio/dio.dart';
-import 'package:network/src/entity/exception/exception.dart';
-import 'package:network/src/utils/base_layer_transformer.dart';
 import 'package:shared/models/network_error.dart';
 import 'package:shared/utils/either.dart';
 
-NetworkError _mapExceptionEntity(ExceptionEntity error) {
-  return NetworkError(
-    httpCode: error.code,
-    message: error.message.isNotEmpty ? error.message : 'Something went wrong',
-    cause: error,
-  );
-}
-
-Future<Either<NetworkError, T>> safeApiCall<T>(
-  Future<BaseLayerDataTransformer> Function() apiCall,
-) async {
+Future<Either<NetworkError, T>> safeApiCall<T>(Future<Map> apiCall) async {
   try {
-    final response = await apiCall();
-    return right(response.transform);
+    final response = await apiCall;
+
+    final result = MapperContainer.globals.fromValue<T>(response);
+    return right(result);
   } on DioException catch (e) {
     return left(_mapDioExceptionToNetworkError(e));
   } on SocketException catch (e, st) {

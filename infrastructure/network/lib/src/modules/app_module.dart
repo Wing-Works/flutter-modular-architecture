@@ -1,22 +1,21 @@
 import 'package:injectable/injectable.dart';
-import 'package:network/src/utils/network_constant.dart';
 
 @module
 abstract class AppModule {
   // --> Existing baseUrlDev
   @dev
   @Named('BaseUrl')
-  String get baseUrlDev => NetworkConstant.baseUrl;
+  String get baseUrlDev => 'https://dummyjson.com';
 
   // --> baseUrl for CUG
   @prod
   @Named('BaseUrl')
-  String get baseUrlProd => NetworkConstant.baseUrl;
+  String get baseUrlProd => 'https://dummyjson.com';
 
   // --> baseUrl for Prod
   @test
   @Named('BaseUrl')
-  String get baseUrlTest => NetworkConstant.baseUrl;
+  String get baseUrlTest => 'https://dummyjson.com';
 
   @dev
   @Named('x-apikey')

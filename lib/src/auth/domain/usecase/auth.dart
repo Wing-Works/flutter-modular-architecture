@@ -1,10 +1,13 @@
 import 'package:flutter_modular_architecture/src/auth/domain/model/auth/auth.dart';
 import 'package:flutter_modular_architecture/src/auth/domain/repository/auth.dart';
+import 'package:injectable/injectable.dart';
 import 'package:shared/shared.dart';
 
+@injectable
 class AuthUC extends BaseCheck<AuthUCParams, AuthModel> {
-  AuthUC(this._repo);
   final AuthRepository _repo;
+
+  AuthUC(this._repo);
 
   @override
   ApiResult<AuthModel> execute(AuthUCParams params) {
@@ -13,14 +16,14 @@ class AuthUC extends BaseCheck<AuthUCParams, AuthModel> {
 }
 
 class AuthUCParams extends Params {
-  AuthUCParams({required this.accountId, required this.accountType});
+  AuthUCParams({required this.username, required this.password});
 
-  final String accountId;
-  final String accountType;
+  final String username;
+  final String password;
 
   @override
   Map<String, dynamic> get toJson => {
-    'accountId': accountId,
-    'accountType': accountType,
+    "username": username,
+    "password": password,
   };
 }

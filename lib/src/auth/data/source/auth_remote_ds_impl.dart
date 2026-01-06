@@ -11,7 +11,7 @@ class AuthRemoteDSImpl implements AuthRemoteDS {
   final NetworkClient client;
 
   @override
-  BaseFutureResponse login(DataMap body) {
+  Future<Map> login(DataMap body) {
     return client.get(endpoints.login, body: body);
   }
 }
